@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GET PET BACK</title>
+    <link href="node_modules/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<style>     body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f8f9fa;
+}
+
+header {
+  background-color: rgb(207, 187, 201);
+  color: white;
+  padding: 20px;
+  text-align: center;
+}
+
+main {
+  padding: 20px;
+}
+
+.search-box {
+  background-color: #ffffff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+}
+
+.search-box input, .search-box button {
+  padding: 10px;
+  margin: 5px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.search-box button {
+  background-color: rgb(128, 83, 114);
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.search-box button:hover {
+  background-color: rgb(128, 83, 114);
+}
+
+.ad {
+  background-color: #ffffff;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ad img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+.ad p {
+  margin: 5px 0;
+}
+
+footer {
+  background-color: #f1f1f1;
+  text-align: center;
+  padding: 10px 0;
+  margin-top: 20px;
+} </style> 
+
+</head>
+<body>
+
+      <header>
+        <h1>Поиск объявлений о потерянных животных</h1>
+        <nav class="navbar navbar-expand-lg bg-body-tertiary">
+          <div class="container-fluid">
+            <a class="navbar-brand" href="index.html"><img src="logo.jpg" class="w-25 rounded-3" alt="logo"></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Переключатель навигации">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="index.html">Главная</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="search.html">Личный кабинет</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="registration.html">Регистрация</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="add_pet.html">Поиск по объявлениям</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link active" aria-current="page" href="profile.html">Добавить объявления</a>
+                </li>
+              
+          </ul>
+
+          <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Регистрация
+          </button>
+
+          <button type="button" class="btn btn-primary m-2" data-bs-toggle="modal" data-bs-target="#exampleModal1">
+            Вход
+          </button>
+          
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Регистрация</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                  <form>
+                    <div class="mb-3">
+                      <label for="nameInput" class="form-label" style="color: black;">ФИО</label>
+                      <input type="text" class="form-control" id="nameInput" placeholder="Введите ваше имя" id="fullName" required pattern="^[А-Яа-яЁё]+([ -][А-Яа-яЁё]+)*$" title="ФИО должно содержать только кириллицу, пробелы и тире." oninput="validateFio()">
+                    </div>
+                    <div class="mb-3">
+                      <label for="phoneInput" class="form-label" style="color: black;">Телефон</label>
+                      <input type="tel" class="form-control" id="phoneInput" placeholder="Введите ваш номер телефона">
+                    </div>
+                    <div class="mb-3">
+                      <label for="emailInput" class="form-label" style="color: black;">Email</label>
+                      <input type="email" class="form-control" id="emailInput" placeholder="Введите ваш email">
+                    </div>
+                    <div class="mb-3">
+                      <label for="passwordInput" class="form-label" style="color: black;">Пароль</label>
+                      <input type="password" class="form-control" id="passwordInput" placeholder="Введите пароль">
+                    </div>
+                    <div class="mb-3">
+                      <label for="passwordConfirmInput" class="form-label" style="color: black;">Подтверждение пароля</label>
+                      <input type="password" class="form-control" id="passwordConfirmInput" placeholder="Повторите пароль">
+                    </div>
+                    <div class="mb-3 form-check">
+                      <input type="checkbox" class="form-check-input" id="dataAgreementCheck" required>
+                      <label class="form-check-label" for="dataAgreementCheck" style="color: black;">Я соглашаюсь на обработку данных</label>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                  </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <script>
+            document.addEventListener("DOMContentLoaded", function () {
+              const form = document.getElementById("registrationForm");
+              const passwordInput = document.getElementById("passwordInput");
+              const passwordConfirmInput = document.getElementById("passwordConfirmInput");
+          
+              passwordConfirmInput.addEventListener("input", function () {
+                if (passwordInput.value !== passwordConfirmInput.value) {
+                  passwordConfirmInput.setCustomValidity("Пароли не совпадают");
+                } else {
+                  passwordConfirmInput.setCustomValidity("");
+                }
+              });
+          
+              form.addEventListener("submit", function (event) {
+                if (!form.checkValidity()) {
+                  event.preventDefault();
+                  event.stopPropagation();
+                }
+                form.classList.add("was-validated");
+              });
+            });
+            function validateFio() {
+const fullNameInput = document.getElementById('nameInput');
+const pattern = /^[А-Яа-яЁё]+([ -][А-Яа-яЁё]+)*$/;
+
+if (pattern.test(fullNameInput.value)) {
+    fullNameInput.setCustomValidity("");
+} else {
+    fullNameInput.setCustomValidity("ФИО должно содержать только кириллицу, пробелы и тире.");
+}
+}
+          </script>
+
+
+          <!-- Modal -->
+          <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="exampleModalLabel" style="color: black;">Вход</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-start">
+                    <form>
+                        <div class="mb-3">
+                          <label for="exampleInputEmail1" class="form-label" style="color: black;">Email</label>
+                          <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                        </div>
+                        <div class="mb-3">
+                          <label for="exampleInputPassword1" class="form-label" style="color: black;">Пароль</label>
+                          <input type="password" class="form-control" id="exampleInputPassword1">
+                        </div>
+                        <div class="mb-3 form-check">
+                          <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                          <label class="form-check-label" for="exampleCheck1" style="color: black;">Запомнить меня</label>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Войти</button>
+                      </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                </div>
+              </div>
+            </div>
+          </div>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" list="pets" placeholder="Поиск" aria-label="Search">
+        <button class="btn btn-primary" onclick="">Поиск</button>
+        <datalist id="pets">
+          <option value="Кошка">
+          <option value="Собака">
+          <option value="Корова">
+          <option value="Крокодил">
+          <option value="Сова">
+        </datalist>
+      </form>
+    </div>
+  </div>
+</nav>
+</header>
+      
+      <main>
+        <div class="search-box">
+          <h3>Поиск</h3>
+          <input type="text" id="regionInput" placeholder="Район">
+          <input type="text" id="animalTypeInput" placeholder="Вид животного">
+          <button onclick="searchAds()">Найти</button>
+        </div>
+      
+        <div id="adsContainer" class="row">
+          <!-- Объявления появятся здесь -->
+        </div>
+      </main>
+      
+
+
+      <nav aria-label="Пример навигации по страницам">
+        <ul class="pagination" style="margin-left: 60px;">
+          <li class="page-item"><a class="page-link" href="#">Предыдущая</a></li>
+          <li class="page-item"><a class="page-link" href="#">1</a></li>
+          <li class="page-item"><a class="page-link" href="#">2</a></li>
+          <li class="page-item"><a class="page-link" href="#">3</a></li>
+          <li class="page-item"><a class="page-link" href="#">Следующая</a></li>
+        </ul>
+      </nav>
+      <footer class="border-bottom " style="background-color: rgb(128, 83, 114);">
+        <p class="text-white p-3" style="text-align: center;">GET PET BACK © Copyright, 2022</p>
+        <p class="text-white p-3" style="text-align: center;">Все права защищены</p>
+      </footer> 
+
+      <script>
+        const ads = [
+          {
+            id: 18,
+            type: "Коза",
+            description: "Потерялась коза, последний раз видели в здании Московского вокзала г. Санкт-Петербург. Коза белая, пуховая.",
+            chipNumber: "go-011-spb",
+            region: "Центральный",
+            date: "14-03-2022",
+            image: "cossa.jpg"
+          },
+          {
+            id: 14,
+            type: "Кошка",
+            description: "Потерялась кошка, пушистая, серая. Любит играть, ласковая.",
+            chipNumber: "ca-001-spb",
+            region: "Василиостровский",
+            date: "24-03-2020",
+            image: "cat.jpg"
+          },
+          {
+            id: 42,
+            type: "Собака",
+            description: "Собака рыжая, была утеряна в красногвардейском райне районе",
+            chipNumber: "do-123-spb",
+            region: "Красногвардейский",
+            date: "22-07-2023",
+            image: "pes.jpg"
+          },
+          {
+            id: 15,
+            type: "Кошка",
+            description: "Потерялся котенок. Любит играть, ласковая.",
+            chipNumber: "ca-007-spb",
+            region: "Василиостровский",
+            date: "24-03-2021",
+            image: "big.png"
+          }
+        ];
+      
+        function displayAds(filteredAds) {
+          const adsContainer = document.getElementById('adsContainer');
+          adsContainer.innerHTML = '';
+          if (filteredAds.length === 0) {
+            adsContainer.innerHTML = '<p>Объявлений не найдено.</p>';
+            return;
+          }
+          filteredAds.forEach(ad => {
+            const adElement = document.createElement('div');
+            adElement.className = 'ad col-md-6 mb-4';
+            adElement.innerHTML = `
+              <img src="${ad.image}" alt="${ad.type}">
+              <p><strong>ID:</strong> ${ad.id}</p>
+              <p><strong>Вид животного:</strong> ${ad.type}</p>
+              <p><strong>Описание:</strong> ${ad.description}</p>
+              <p><strong>Номер чипа:</strong> ${ad.chipNumber}</p>
+              <p><strong>Район:</strong> ${ad.region}</p>
+              <p><strong>Дата:</strong> ${ad.date}</p>
+            `;
+            adsContainer.appendChild(adElement);
+          });
+        }
+      
+        function searchAds() {
+          const region = document.getElementById('regionInput').value.trim();
+          const animalType = document.getElementById('animalTypeInput').value.trim().toLowerCase();
+          const filteredAds = ads.filter(ad => {
+            const matchesRegion = region ? ad.region === region : true;
+            const matchesType = animalType ? ad.type.toLowerCase().includes(animalType) : true;
+            return matchesRegion && matchesType;
+          });
+          displayAds(filteredAds);
+        }
+      
+        displayAds(ads);
+      </script>
